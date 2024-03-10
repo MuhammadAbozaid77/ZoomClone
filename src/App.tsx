@@ -1,15 +1,14 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MainLayout from "./pages/layouts/MainLayout";
-import Home from "./pages/pages/home/Home";
+import Login from "./pages/pages/home/auth/Login";
+import Dashbord from "./pages/pages/Dashbord";
 
 
 
 function App() {
 
   const routers = createBrowserRouter([
-    {path:"/" , element:<MainLayout /> , children : [
-      {path : "home" , element : <Home/>}
-    ] }
+    {path : "*" , element : <Dashbord />},
+    {path:"login" , element : <Login />},
   ])
 
   return (
