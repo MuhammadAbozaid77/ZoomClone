@@ -1,21 +1,22 @@
 
 
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
+import { collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDdIeQSlcO3VwFF9ijAhUShqISWNVwKRVM",
-  authDomain: "zoomclone-d1452.firebaseapp.com",
-  projectId: "zoomclone-d1452",
-  storageBucket: "zoomclone-d1452.appspot.com",
-  messagingSenderId: "824354966636",
-  appId: "1:824354966636:web:a21555ca6160aabe729c49",
-  measurementId: "G-9FL5BG3N4G"
+  apiKey: "AIzaSyDqeP9M19bQatQEbRoOfk-osT0g7Ew2RNI",
+  authDomain: "zoomapp-ff640.firebaseapp.com",
+  projectId: "zoomapp-ff640",
+  storageBucket: "zoomapp-ff640.appspot.com",
+  messagingSenderId: "983475713528",
+  appId: "1:983475713528:web:cb8b9a8575d05537ac920d",
+  measurementId: "G-20PB1860C3"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const firebaseAuth = getAuth(app);
-export const firebaseFirestore = getFirestore(app);
+export const auth = getAuth(app);
+export const firestoreDB = getFirestore(app);
 
+export const userRef = collection(firestoreDB , "users");
