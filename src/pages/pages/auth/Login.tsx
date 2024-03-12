@@ -1,10 +1,20 @@
 import logo from "./../../../assets/logo 3.jpg";
 import animationPic from "./../../../assets/animation.gif";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, userRef } from "../../../firebaseConfig/FirebaseConfig";
 import { getDocs, addDoc, query, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../storeRedux/authSlice/authSlice";
 export default function Login() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    onAuthStateChanged(auth , (currentUser)=>{
+        if(currentUser){
+            navigate("/")
+        }
+    });
     const handelLogin = async ()=>{
         // Auth With Google
         const provider = new GoogleAuthProvider();
@@ -13,11 +23,11 @@ export default function Login() {
 //----------------------------------------------------------------
         // Store Data in FireStore
         if(email){
+            // Query
             const firestoreQuery = query(userRef , where("uid" , "==" , uid));
-            console.log("firestoreQuery" , firestoreQuery);
-
+            // Get Docs
             const fetchLogin = await getDocs(firestoreQuery);
-
+            // Add Doc
             if(fetchLogin.docs.length === 0){
                 await addDoc(userRef , {
                     uid , 
@@ -26,6 +36,8 @@ export default function Login() {
                 })
             }
         }
+        dispatch(setUser({uid , name:displayName , email}));
+        navigate("/");
     };
 
     
