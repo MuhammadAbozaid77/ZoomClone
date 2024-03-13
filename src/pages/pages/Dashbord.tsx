@@ -23,7 +23,7 @@ export default function Dashbord() {
           <div className="md:w-[90%] p-5 md:flex justify-center items-center ">
             <div className="w-[100%] flex justify-center items-center">
               <div
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/createMeeting")}
                 className="w-[100%] block max-w-sm p-6 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
               >
                 <div className="flex justify-center items-center mb-5">
@@ -39,6 +39,7 @@ export default function Dashbord() {
                 </p>
               </div>
             </div>
+            {/* --------------- Cards ------------------ */}
             <div className="w-[100%]">
               <div
                 onClick={() => navigate("/")}
@@ -57,6 +58,7 @@ export default function Dashbord() {
                 </p>
               </div>
             </div>
+            {/* --------------- Cards ------------------ */}
             <div className="w-[100%]">
               <div
                 onClick={() => navigate("/")}
