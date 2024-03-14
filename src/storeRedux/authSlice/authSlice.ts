@@ -29,19 +29,15 @@ export const authSlice = createSlice({
     },
     extraReducers :  (builder) => {
     /* --------------------------------------------  -------------------------------------------- */
-      builder.addCase(authSignUp.pending, (state) => {
-      })
+      // builder.addCase(authSignUp.pending, (state) => {
+      // })
       builder.addCase(authSignUp.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        
-        // if(payload?.user?.uid){
-        //   state?.signUpSuccessful = "Registiration Successfuly";
-        // }
-        // else{
-        //   state?.signUpError = payload?.message
-        // }
+        if(payload?.user?.uid){
+          state.signUpSuccessful = "Registiration Successfuly";
+        }
       })
-      builder.addCase(authSignUp.rejected, (state) => {
+      builder.addCase(authSignUp.rejected, (state , {payload}) => {
+        state.signUpError = payload?.message;        
       })
       /* ---------------------------------  ------------------------------------------------------------ */
     }

@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../storeRedux/authSlice/authSlice";
 import { useEffect, useState } from "react";
 import { authSignUp } from "../../../storeRedux/authSlice/authActions";
+import { useAppSelector } from "../../../storeRedux/reduxHooks";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -53,20 +54,25 @@ export default function SignUp() {
 const [userEmail , setUserEmail] = useState("");
 const [userPassword, setUserPassword] = useState("");
 const handelSignUp = ()=>{
-    dispatch(authSignUp({userEmail,userPassword})).then((value) => {
-      // console.log(value);
-      // if(value?.payload?.user?.uid){
-      //     console.log("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-      // }
-      // else {
-      //   console.log(value?.payload?.message);
-      // }
-    });
+    dispatch(authSignUp({userEmail,userPassword}));
 };
+
+const data = useAppSelector((state)=>state.auth);
+console.log(data);
+
 
   return (
     <div className="h-[100vh] flex justify-center items-center flex-col">
       <div className="border px-5 py-10 rounded-lg md:w-[400px] shadow">
+        {data?.signUpError ? 
+            <div>
+                <div className="bg-green-500"> sdsdsdsds </div>
+            </div>
+            :
+            <div>
+              <div className="bg-red-500"> dsdsdsd </div>
+            </div>
+        }
         <div className="flex justify-center items-center mb-10">
           <img src={logo} alt="" className="" />
         </div>
