@@ -1,23 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { authSignUp } from "./authActions";
 
 interface TInitialStateAuth {
-    userInfo : {
         uid : string,
         email :string,
         name : string,
-    }
-    | undefined
+        logInError : string,
+        signUpError : string,
+        logInSuccessful : string,
+        signUpSuccessful : string,
 }
 const initialState:TInitialStateAuth = {
-    userInfo : undefined
+      uid : "",
+      email :"",
+      name : "",
+      logInError : "",
+      signUpError : "",
+      logInSuccessful : "",
+      signUpSuccessful : "",
 };
 export const authSlice = createSlice({
     name:"auth" , 
     initialState,
     reducers : {
         setUser : (state , action)=>{
-            state.userInfo = action.payload;
+            state = action.payload;
         }
+    },
+    extraReducers :  (builder) => {
+    /* --------------------------------------------  -------------------------------------------- */
+      builder.addCase(authSignUp.pending, (state) => {
+      })
+      builder.addCase(authSignUp.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        
+        // if(payload?.user?.uid){
+        //   state?.signUpSuccessful = "Registiration Successfuly";
+        // }
+        // else{
+        //   state?.signUpError = payload?.message
+        // }
+      })
+      builder.addCase(authSignUp.rejected, (state) => {
+      })
+      /* ---------------------------------  ------------------------------------------------------------ */
     }
 });
 

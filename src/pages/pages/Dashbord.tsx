@@ -40,9 +40,9 @@ export default function Dashbord() {
               </div>
             </div>
             {/* --------------- Cards ------------------ */}
-            <div className="w-[100%]">
+            <div className="w-[100%] cursor-pointer">
               <div
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/myMeeting")}
                 className="w-[100%] block max-w-sm p-6 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
               >
                 <div className="flex justify-center items-center mb-5">
